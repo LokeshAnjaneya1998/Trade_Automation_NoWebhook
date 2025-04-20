@@ -25,7 +25,7 @@ logging.basicConfig(
     datefmt="%H:%M:%S",
     handlers=[
         logging.StreamHandler(utf8_stdout),
-        logging.FileHandler("bot.log", mode="a", encoding="utf-8"),
+        logging.FileHandler("logfiles\\bot.log", mode="a", encoding="utf-8"),
     ],
 )
 

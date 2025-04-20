@@ -72,7 +72,7 @@ class DataFeed:
 
         self.ws = data_ws.FyersDataSocket(
             access_token=token,
-            log_path="",
+            log_path="logfiles",
             litemode=False,
             reconnect=True,
             on_connect=on_open,

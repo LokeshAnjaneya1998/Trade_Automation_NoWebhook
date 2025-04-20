@@ -1,8 +1,12 @@
-import logging, pytz, datetime
+import logging, pytz, datetime, os
 from fyers_apiv3 import fyersModel
 from src.config_manager import ConfigManager, AppConfig
 
+LOG_DIR = "logfiles"
+os.makedirs(LOG_DIR, exist_ok=True)
+
 IST = pytz.timezone("Asia/Kolkata")
+log = logging.getLogger("FyersIntg")
 
 class FyersIntegration:
     """Handles v3 auth + thin helpers for REST calls."""
@@ -91,7 +95,8 @@ class FyersIntegration:
         return fyersModel.FyersModel(
             token=self.cfg.access_token,
             is_async=False,
-            client_id=self.cfg.client_id)
+            client_id=self.cfg.client_id,
+            log_path=LOG_DIR, )
 
     def history(self, fy, symbol, resolution, date_from, date_to):
         payload = {
