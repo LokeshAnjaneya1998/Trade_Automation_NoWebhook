@@ -1,5 +1,6 @@
 # data_feed.py
-import asyncio
+import asyncio,os
+import certifi
 import datetime
 import logging
 import pytz
@@ -7,6 +8,7 @@ import pytz
 from fyers_apiv3.FyersWebsocket import data_ws
 from src.fyers_integration import FyersIntegration, IST
 
+os.environ["SSL_CERT_FILE"] = certifi.where()
 log = logging.getLogger("DataFeed")
 
 
@@ -69,6 +71,7 @@ class DataFeed:
 
         def on_error(err):
             log.error(f"WebSocket error: {err}")
+
 
         self.ws = data_ws.FyersDataSocket(
             access_token=token,
